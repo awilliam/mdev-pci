@@ -1,0 +1,14 @@
+mdev-pci: A stub mdev PCI driver
+
+This driver supports binding to an arbitrary PCI device using either
+the standard driver new_id, device driver_override, or ids= module
+option functionality.  The PCI device is never accessed in any way, it
+provides only a parent device for registering dummy mdev devices.  Each
+mdev type perpetually indicates an available_instances value of 1,
+regardless of the number of mdev devices created (this is valid per the
+mdev interface spec).  The mdev device reports a vfio-pci device_api,
+but currently has none of the implementation to open the device through
+vfio, ie. it cannot be used with QEMU or other userspace drivers.
+
+This is intended to provide an example driver for management of mdev
+devices in association to a PCI parent device.
